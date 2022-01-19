@@ -8,7 +8,6 @@ class Phy_Engine:
     def __init__(self, pygame_ui_screen, pygame, gravity):
         self.Box2D = Box2D
         self.PPM = 60  # pixels per meter
-        self.box2d_arguments = box2d_arguments
 
         self.gravity = gravity
         self.do_sleep = True
@@ -190,8 +189,7 @@ class Phy_Engine:
         kinematic_body.CreatePolygonFixture(vertices=vertices, density=density, friction=friction)
 
         self.hold_able_bodies.append(kinematic_body)
-        
-    
+
     def create_edge_chain(self, pos_x, pos_y, vertices=None, box=None, density=1):
         if None != box:  # if so this means that the user have chosen to make the polygon a rectangle using the box param
             vertices = self.generate_rectangle_vertices_for_edge_chain(width=box[0], height=box[1])
@@ -252,7 +250,7 @@ class Phy_Engine:
         # Note: Python 3.x will enforce that pygame get the integers it requests,
         #       and it will not convert from float.
 
-        def round_number(self, x):
+    def round_number(self, x):
         """
         this function is for rounding a float number and it's useful when rounding two numbers that are related to each other to make them kind of equal
         :param x: the number that u want to round
@@ -296,8 +294,7 @@ class Phy_Engine:
         new_pos = tuple((new_pos[0] / self.PPM, new_pos[1] / self.PPM))
 
         body.position = self.Box2D.b2Vec2(new_pos[0], new_pos[1])
-        
-    
+
     def reset_world(self):
         for body in self.world.bodies:
             self.world.DestroyBody(body)
@@ -318,8 +315,7 @@ class Phy_Engine:
         self.create_edge_chain(pos_x=200, pos_y=300, box=(350, 350))
 
         self.bodies_amount += 1
-    
-    
+
     def step(self, fps):
         self.world.Step(1 / fps, 20, 20)
         self.bodies_amount = len(self.world.bodies)
