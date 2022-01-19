@@ -298,3 +298,26 @@ class Phy_Engine:
         new_pos = tuple((new_pos[0] / self.PPM, new_pos[1] / self.PPM))
 
         body.position = self.Box2D.b2Vec2(new_pos[0], new_pos[1])
+        
+    
+    def reset_world(self):
+        for body in self.world.bodies:
+            self.world.DestroyBody(body)
+
+        self.bodies_amount = 0
+        self.hold_able_bodies = []
+        self.setup_world()
+
+    def setup_world(self):
+        """
+        setups the world with a ground and it also sets the ppm so it must be called for making the world
+        """
+
+        # this is the ground body
+        self.create_static_polygon(pos_x=self.SCREEN_WIDTH / 2, pos_y=self.SCREEN_HEIGHT,
+                                   box=(self.SCREEN_WIDTH, 30))
+
+        self.create_edge_chain(pos_x=200, pos_y=300, box=(350, 350))
+
+        self.bodies_amount += 1
+
