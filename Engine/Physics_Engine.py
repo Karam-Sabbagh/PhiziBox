@@ -320,4 +320,8 @@ class Phy_Engine:
         self.create_edge_chain(pos_x=200, pos_y=300, box=(350, 350))
 
         self.bodies_amount += 1
-
+    
+    
+    def step(self, fps):
+        self.world.Step(1 / fps, 20, 20)
+        self.bodies_amount = len(self.world.bodies)
