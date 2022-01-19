@@ -192,3 +192,64 @@ class Phy_Engine:
         kinematic_body.CreatePolygonFixture(vertices=vertices, density=density, friction=friction)
 
         self.hold_able_bodies.append(kinematic_body)
+        
+    
+    def create_edge_chain(self, pos_x, pos_y, vertices=None, box=None, density=1):
+        if None != box:  # if so this means that the user have chosen to make the polygon a rectangle using the box param
+            vertices = self.generate_rectangle_vertices_for_edge_chain(width=box[0], height=box[1])
+
+        elif None != vertices:  # if so this means that the user have chosen to make the polygon using the vertices param
+            vertices = self.convert_vertices_to_meters(vertices)
+        else:
+            print("you have to pass one of the ways for making a polygon(box or number of vertices with scale)")
+            vertices = None
+
+        pos_x = pos_x / self.PPM
+        pos_y = (self.SCREEN_HEIGHT - pos_y) / self.PPM
+
+        edge_chain_body = self.world.CreateBody(position=(pos_x, pos_y))
+        edge_chain_body.CreateEdgeChain(vertices)
+
+    def polygon_shape_draw(self, polygon, body, fixture, out_line_thickness=4):
+        """
+        :param polygon: is fixture.shape(u can see what is fixture in the other parameters)
+        :param body: is just the box2d body like a dynamic polygon for example
+        :param fixture: is body.fixtures
+        :param out_line_thickness: just normal thickness in pygame
+        """
+        vertices = [body.transform * v * self.PPM for v in polygon.vertices]
+        vertices = [[self.round_number(v[0]), self.round_number(self.SCREEN_HEIGHT - v[1])] for v in vertices]
+
+        self.pygame.draw.polygon(self.pygame_ui_screen, self.shapes_colors[body.type]["fill_color"], vertices)
+        self.pygame.draw.polygon(self.pygame_ui_screen, self.shapes_colors[body.type]["out_line_color"], vertices,
+                                 out_line_thickness)
+
+    def edge_chain_polygon_draw(self, polygon, body, fixture, out_line_thickness=2):
+        """
+        :param polygon: is fixture.shape(u can see what is fixture in the other parameters)
+        :param body: is just the box2d body like a dynamic polygon for example
+        :param fixture: is body.fixtures
+        :param out_line_thickness: just normal thickness in pygame
+        """
+        vertices = [body.transform * v * self.PPM for v in polygon.vertices]
+        vertices = [[self.round_number(v[0]), self.round_number(self.SCREEN_HEIGHT - v[1])] for v in vertices]
+
+        self.pygame.draw.polygon(self.pygame_ui_screen, self.shapes_colors["edge_chain"]["out_line_color"], vertices,
+                                 out_line_thickness)
+
+    def circle_shape_draw(self, circle, body, fixture, out_line_thickness=4):
+        """
+        :param circle: is fixture.shape(u can see what is fixture in the other parameters)
+        :param body: is just the body like a dynamic circle for example
+        :param fixture: is body.fixtures
+        :param out_line_thickness: just normal thickness in pygame
+        """
+        position = body.transform * circle.pos * self.PPM
+        position = (position[0], self.SCREEN_HEIGHT - position[1])
+        self.pygame.draw.circle(self.pygame_ui_screen, self.shapes_colors["circle_shape"]["fill_color"], [
+            x for x in position], circle.radius * self.PPM)
+
+        self.pygame.draw.circle(self.pygame_ui_screen, self.shapes_colors["circle_shape"]["out_line_color"], [
+            x for x in position], circle.radius * self.PPM, out_line_thickness)
+        # Note: Python 3.x will enforce that pygame get the integers it requests,
+        #       and it will not convert from float.
