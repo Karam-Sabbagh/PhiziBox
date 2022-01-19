@@ -3,8 +3,6 @@ import math
 # Box2D.b2 maps Box2D.b2Vec2 to vec2 (and so on)
 from Box2D.b2 import (world, polygonShape, circleShape, staticBody, dynamicBody, kinematicBody, edgeShape)
 
-box2d_arguments = [world, polygonShape, circleShape, staticBody, dynamicBody, kinematicBody, edgeShape]
-
 
 class Phy_Engine:
     def __init__(self, pygame_ui_screen, pygame, gravity):
