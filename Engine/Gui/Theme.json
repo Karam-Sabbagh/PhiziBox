@@ -1,0 +1,40 @@
+{
+    "#Add_body_button":
+    {
+        "images": {
+            "normal_image": {
+                "path": "Engine/Gui/Images/Add_body_image.png"
+            }
+        }
+    },
+     "window":
+   {
+      "colours":
+      {
+         "dark_bg":"#969696",
+         "normal_border": "#000000"
+      },
+
+      "misc":
+      {
+         "shape": "rounded_rectangle",
+         "shape_corner_radius": "10",
+         "border_width": "1",
+         "shadow_width": "15",
+         "title_bar_height": "30"
+      }
+   },
+
+    "selection_list":
+    {
+        "misc": {
+             "list_item_height": "70",
+            "list_item_width": "70"
+         },
+        "colours":
+         {
+             "dark_bg":"#969696",
+             "normal_border": "#000000"
+         }
+         }
+}
