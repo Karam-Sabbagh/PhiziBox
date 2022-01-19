@@ -253,3 +253,48 @@ class Phy_Engine:
             x for x in position], circle.radius * self.PPM, out_line_thickness)
         # Note: Python 3.x will enforce that pygame get the integers it requests,
         #       and it will not convert from float.
+
+        def round_number(self, x):
+        """
+        this function is for rounding a float number and it's useful when rounding two numbers that are related to each other to make them kind of equal
+        :param x: the number that u want to round
+        """
+        return float(int(round(x)))
+
+    def wake_bodies(self):
+        """
+        this function wakes all of the world bodies also the static ones just everything
+        """
+        for body in self.world.bodies:
+            body.awake = True
+
+    def destroy_body(self, body):
+        self.world.DestroyBody(body)
+        self.bodies_amount -= 1
+
+    def body_check_hit(self, body, point_pos):
+        """
+        this function checks if a point position is inside a body and if so it will return True
+        :param body: just the body that you wanna test on
+        :param point_pos: the position of the point that you wanna check that's inside the body or not
+        """
+        point_pos = tuple((point_pos[0]/self.PPM, point_pos[1]/self.PPM))
+
+        hit = False
+
+        for fixture in body.fixtures:
+            hit = fixture.TestPoint((point_pos[0], point_pos[1]))
+            if hit == True:
+                break
+
+        return hit
+
+    def set_body_position(self, body, new_pos):
+        """
+        this function updates any body's position
+        :param body: the body that you want to change it's position
+        :param new_pos: the updated position that you wish pass it just in pixels
+        """
+        new_pos = tuple((new_pos[0] / self.PPM, new_pos[1] / self.PPM))
+
+        body.position = self.Box2D.b2Vec2(new_pos[0], new_pos[1])
