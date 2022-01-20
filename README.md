@@ -17,6 +17,6 @@ press c for a circle body
 
 press s for small circles(made them just for fun they are really laggy in big numbers)
 
-and you can hold some bodies with mouse left click
+and you can hold some bodies with mouse left click on the body
 
-you can delete bodies with mouse right click
+you can delete bodies with mouse right click on the body
