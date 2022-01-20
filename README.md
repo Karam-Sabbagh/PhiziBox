@@ -5,7 +5,7 @@ and I am sorry you can't change that window size right now but you can edit it f
 
 This program is not comlete and there is lots of things that I have to do
 This program doesn't even have a spawn bodies window(there is one but I am still making it)
-you can just spawn windows by keys on the keyboard now and you can't set their size without editing the code
+you can just spawn bodies just by keys on the keyboard now and you can't set their size without editing the code
 
 controls:
 
