@@ -1,6 +1,8 @@
 # PhiziBox
 PhiziBox is an open-source sandbox physics simulator program (still during development)
 
+and I am sorry you can't change that window size right now but you can edit it from that code but it might also make some bugs
+
 This program is not comlete and there is lots of things that I have to do
 This program doesn't even have a spawn bodies window(there is one but I am still making it)
 you can just spawn windows by keys on the keyboard now and you can't set their size without editing the code
