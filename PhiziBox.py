@@ -9,9 +9,10 @@ SCREEN_WIDTH = 1200
 SCREEN_HEIGHT = 800
 
 pygame_ui_screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-pygame.display.set_caption('PhiziBox')
+pygame_ui_screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+pygame.display.set_caption("PhiziBox")
 
-background_colour = (15, 15, 15)
+background_colour = (35, 35, 35)
 pygame_ui_screen.fill(background_colour)
 
 clock = pygame.time.Clock()
@@ -25,7 +26,7 @@ pygame_gui_setup = Pygame_gui_setup.Gui(pygame, pygame_ui_screen, pygame_gui)
 start_tick = pygame.time.get_ticks()
 seconds = 0
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     # -- FOR SPAWNING BODIES IN THE GUI --
     # for default pressing properties:
     check_keys = [pygame.K_p, pygame.K_c, pygame.K_k, pygame.K_r, pygame.K_n]
@@ -151,7 +152,7 @@ if __name__ == '__main__':
 
     # text:
     pygame.font.init()
-    font = pygame.font.SysFont('arial', 25)
+    font = pygame.font.SysFont("arial", 25)
     text_color = (180, 180, 180)
 
     FPS = 60
@@ -159,7 +160,7 @@ if __name__ == '__main__':
     running_game = True
 
     while running_game:
-        time_delta = clock.tick(0)
+        time_delta = clock.tick(FPS)
         seconds = (pygame.time.get_ticks() - start_tick) / 1000
 
         for event in pygame.event.get():
@@ -190,14 +191,16 @@ if __name__ == '__main__':
 
         # show FPS text
 
-        text_seconds = font.render(('FPS: ' + (str(int(fps)))), True, (text_color))
+        text_seconds = font.render(("FPS: " + (str(int(fps)))), True, (text_color))
         pygame_ui_screen.blit(text_seconds, (20, 15))
 
         # show bodies amount
-        text_seconds = font.render(('Bodies Amount: ' + (str(int(Phy_Eng.bodies_amount)))), True, (text_color))
+        text_seconds = font.render(("Bodies Amount: " + (str(int(Phy_Eng.bodies_amount)))), True, (text_color))
         pygame_ui_screen.blit(text_seconds, (20, 50))
 
         pygame_gui_setup.draw(time_delta)
 
         pygame.display.flip()
         pygame.display.update()
+
+    pygame.quit()

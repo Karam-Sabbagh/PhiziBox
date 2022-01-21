@@ -1,40 +1,91 @@
 {
-    "#Add_body_button":
+    "#Choose_rect_body_button":
     {
         "images": {
             "normal_image": {
-                "path": "Engine/Gui/Images/Add_body_image.png"
+                "path": "Engine/Gui/Images/Choose_rect_body_button_image.png"
             }
         }
     },
+    "button": {
+      "colours": {
+        "normal_bg": "#dcdcdc",
+        "hovered_bg": "#aaaaaa",
+        "active_bg": "#336dff",
+        "normal_text": "#141414",
+        "hovered_text": "#141414",
+        "selected_text": "#141414",
+        "normal_border": "#afafaf"
+      },
+      "misc": {
+        "border_width": "4"
+      }
+    },
+
      "window":
    {
       "colours":
       {
-         "dark_bg":"#969696",
+         "dark_bg":"#dcdcdc",
          "normal_border": "#000000"
       },
 
       "misc":
       {
          "shape": "rounded_rectangle",
-         "shape_corner_radius": "10",
-         "border_width": "1",
+         "shape_corner_radius": "5",
+         "border_width": "0",
          "shadow_width": "15",
-         "title_bar_height": "30"
+         "title_bar_height": "28"
       }
    },
+    "window.#title_bar":
+    {
+      "colours":
+      {
+        "normal_bg": "#464646",
+        "hovered_bg": "#505050",
+        "active_bg": "#1e06bd",
+        "normal_text": "#e6e6e6",
+        "hovered_text": "#e6e6e6"
+      }
+    },
+    "window.#close_button":
+    {
+      "colours":
+      {
+        "normal_bg": "#6e6e6e",
+        "hovered_bg": "#f51616",
+        "active_bg": "#f55050",
+        "normal_text": "#e6e6e6",
+        "hovered_text": "#e6e6e6"
+      }
+    },
 
     "selection_list":
     {
         "misc": {
-             "list_item_height": "70",
-            "list_item_width": "70"
-         },
+          "list_item_height": "70",
+          "list_item_width": "70"
+        },
         "colours":
          {
-             "dark_bg":"#969696",
+             "dark_bg":"#dcdcdc",
              "normal_border": "#000000"
          }
-         }
+         },
+    "@selection_list_item":
+    {
+      "images": {
+            "normal_image": {
+                "path": "Engine/Gui/Images/Add_body_image.png"
+            }
+        },
+      "colours":
+      {
+        "normal_bg": "#dcdcdc",
+        "selected_bg": "#0a4bf0",
+        "active_bg": "#4242ff"
+      }
+    }
 }

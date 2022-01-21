@@ -1,6 +1,9 @@
+from pygame_gui.core import ObjectID
+
 class Gui:
     def __init__(self, pygame, pygame_ui_screen, pygame_gui):
         self.pygame_gui = pygame_gui
+
         self.pygame = pygame
 
         self.pygame_ui_screen = pygame_ui_screen
@@ -45,10 +48,16 @@ class Gui:
         pygame_selection_list_rect = self.pygame.Rect(0, 0, self.selection_list_width, (self.selection_list_length))
         pygame_selection_list_rect.topright = (self.selection_list_pos_x, 0)
 
+        selection_list_items = []
+        for i in range(20):
+            selection_list_items.append(("", f"#Add_body_button_{i}"))
+
+        print(selection_list_items)
+
         self.selection_list = self.pygame_gui.elements.UISelectionList(
             pygame_selection_list_rect,
             starting_height=100,
-            item_list=[("+", "#Add_body_button")] * 20,
+            item_list=[],
             manager=self.ui_manager,
             allow_multi_select=False,
             anchors={"left": "left",
@@ -57,7 +66,8 @@ class Gui:
                      "bottom": "bottom"}
         )
 
-    
+        self.selection_list.set_item_list(selection_list_items)
+
     def make_choose_object_window(self):
         """
         makes a window to let the user select the object
@@ -70,18 +80,18 @@ class Gui:
                                                                          object_id="#choose_object_window")
             self.ui_window_exist = True
 
-            self.pygame_gui.elements.UIButton(relative_rect=self.pygame.Rect(0, 0, 90, 70),
-                                              text="coming...",
+            self.pygame_gui.elements.UIButton(relative_rect=self.pygame.Rect(0, 0, 80+4, 80+4),
+                                              text="Rect",
                                               manager=self.ui_manager,
                                               container=self.ui_window,
-                                              object_id="#choose_rect_button"
+                                              object_id="#Choose_rect_body_button"
                                               )
 
     def check_events(self, event):
         """
-        :param event: it's from pygame.event.get()
+        :param event: it"s from pygame.event.get()
         this function is for checking pygame_gui things
-        and it's used for like checking button press or ui window close
+        and it"s used for like checking button press or ui window close
         """
         if event.type == self.pygame_gui.UI_WINDOW_CLOSE:
             if event.ui_object_id == "#choose_object_window":
@@ -91,12 +101,12 @@ class Gui:
 
     def check_each_selection_list_item(self):
         """
-        it just checks the click of each button and item in the selection list that's made with self.make_selection_list
+        it just checks the click of each button and item in the selection list that"s made with self.make_selection_list
         """
         i = 1
         for each_item in self.selection_list.item_list:
             button_element = each_item["button_element"]
-            # sometimes the button is slided up and not really shown so pygame_gui remove this button when it's not seen able and makes it None
+            # sometimes the button is slided up and not really shown so pygame_gui remove this button when it"s not seen able and makes it None
             if button_element != None:
                 """
                 button element have
@@ -109,18 +119,12 @@ class Gui:
                 if button_element.pressed and button_element.is_selected:
                     print("button", i, "pressed")
                     self.make_choose_object_window()
-
-                button_rect = button_element.relative_rect
-                # the pressed button x position
-                button_pos_x = button_rect.x
-                # the pressed button y position
-                button_pos_y = button_rect.y
             i += 1
 
     def draw(self, time_delta):
         """
         draws everything about pygame_gui and also does somethings for them
-        :param time_delta: it is like time_delta = clock.tick(FPS) so it's just FPS of the screen at the second
+        :param time_delta: it is like time_delta = clock.tick(FPS) so it"s just FPS of the screen at the second
         """
         self.check_each_selection_list_item()
 
