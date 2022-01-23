@@ -12,7 +12,7 @@ class Phy_Engine:
         self.gravity = gravity
         self.do_sleep = True
 
-        self.world = world(gravity=gravity, do_sleep=self.do_sleep)
+        self.world = world(gravity=self.gravity, do_sleep=self.do_sleep)
 
         # noinspection PyStatementEffect
         self.pygame_ui_screen = pygame_ui_screen
@@ -27,9 +27,10 @@ class Phy_Engine:
         # dynamic: 2
 
         self.shapes_colors = {
-            staticBody: {"fill_color": (125, 125, 130, 255), "out_line_color": (130, 130, 130, 255)},
+            staticBody: {"fill_color": (149, 149, 149, 255), "out_line_color": (86, 86, 86, 255)},
             kinematicBody: {"fill_color": (150, 150, 150, 255), "out_line_color": (130, 130, 130, 255)},
-            dynamicBody: {"fill_color": (255, 255, 255, 255), "out_line_color": (190, 190, 190, 255)},
+            dynamicBody: {"fill_color": (255, 255, 255, 255), "out_line_color": (160, 160, 160, 255)},
+            #                            149, 149, 149                           86, 86, 86
             "edge_chain": {"out_line_color": (40, 110, 40, 255)},
             "circle_shape": {"fill_color": (70, 70, 70, 255), "out_line_color": (110, 110, 110, 255)},
             "out_line_color": (190, 190, 190, 255)
@@ -296,8 +297,8 @@ class Phy_Engine:
         body.position = self.Box2D.b2Vec2(new_pos[0], new_pos[1])
 
     def reset_world(self):
-        for body in self.world.bodies:
-            self.world.DestroyBody(body)
+        del(self.world)
+        self.world = world(gravity=self.gravity, do_sleep=self.do_sleep)
 
         self.bodies_amount = 0
         self.hold_able_bodies = []

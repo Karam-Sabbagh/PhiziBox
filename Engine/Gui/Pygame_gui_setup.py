@@ -73,19 +73,54 @@ class Gui:
         makes a window to let the user select the object
         """
         if not self.ui_window_exist:
-            self.ui_window = self.pygame_gui.elements.ui_window.UIWindow(self.pygame.Rect(self.screen_width/3, self.screen_height/3, 400, 300),
+            ui_window_width = 400
+            ui_window_height = 300
+
+            self.ui_window = self.pygame_gui.elements.ui_window.UIWindow(self.pygame.Rect(self.screen_width/3, self.screen_height/3, ui_window_width, ui_window_height),
                                                                          window_display_title="Choose Object",
                                                                          resizable=False,
                                                                          manager=self.ui_manager,
                                                                          object_id="#choose_object_window")
             self.ui_window_exist = True
 
-            self.pygame_gui.elements.UIButton(relative_rect=self.pygame.Rect(0, 0, 80+4, 80+4),
+            buttons_width = 80+4
+            buttons_spacing = 4
+
+            first_button_pos_x = 0
+            first_button_pos_y = 0
+            buttons_pos_y_on_line = 1
+
+            self.pygame_gui.elements.UIButton(relative_rect=self.pygame.Rect(first_button_pos_x+buttons_spacing, first_button_pos_x+buttons_spacing, buttons_width, buttons_width),
                                               text="Rect",
                                               manager=self.ui_manager,
                                               container=self.ui_window,
-                                              object_id="#Choose_rect_body_button"
+                                              object_id="#Choose_dynamic_rect_body_button"
                                               )
+
+            def make_button_pos(number_of_button_order, buttons_pos_y_on_line):
+                pos_x = first_button_pos_x+buttons_spacing+((buttons_width+buttons_spacing)*number_of_button_order)
+
+                if (number_of_button_order+1)*((buttons_width+buttons_spacing)) < (ui_window_width-4):
+                    pos_y = (first_button_pos_y+buttons_spacing)*buttons_pos_y_on_line
+                else:
+                    buttons_pos_y_on_line += 1
+                    number_of_button_order = 1
+                    pos_x = first_button_pos_x+buttons_spacing
+                    pos_y = (first_button_pos_y+buttons_spacing+buttons_width)*(buttons_pos_y_on_line-1)
+
+                return pos_x, pos_y, buttons_pos_y_on_line
+
+            make_pos = make_button_pos(1, buttons_pos_y_on_line)
+            pos = make_pos[0], make_pos[1]
+            buttons_pos_y_on_line = make_pos[2]
+
+            self.pygame_gui.elements.UIButton(relative_rect=self.pygame.Rect(pos[0], pos[1], buttons_width, buttons_width),
+                                              text="Poly",
+                                              manager=self.ui_manager,
+                                              container=self.ui_window,
+                                              object_id="#Choose_dynamic_poly_body_button"
+                                              )
+
 
     def check_events(self, event):
         """

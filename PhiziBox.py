@@ -103,7 +103,7 @@ if __name__ == "__main__":
                 mouse_y = pygame.mouse.get_pos()[1]
                 # smallest circle radius can be around 1.0000001
                 Phy_Eng.create_dynamic_circle(pos_x=mouse_x,
-                                              pos_y=mouse_y, radius=1.0000001, density=0.25, friction=0)
+                                              pos_y=mouse_y, radius=1.0000001, density=0.75, friction=0)
 
         if released_press_keys[pygame.K_c]:
             mouse_x = pygame.mouse.get_pos()[0]

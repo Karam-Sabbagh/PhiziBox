@@ -1,20 +1,28 @@
 {
-    "#Choose_rect_body_button":
+    "#Choose_dynamic_rect_body_button":
     {
-        "images": {
+      "images": {
+        "normal_image": {
+          "path": "Engine/Gui/Images/Choose_dynamic_rect_body_button_image.png"
+        }
+      }
+    },
+    "#Choose_dynamic_poly_body_button":
+    {
+      "images": {
             "normal_image": {
-                "path": "Engine/Gui/Images/Choose_rect_body_button_image.png"
+                "path": "Engine/Gui/Images/Choose_dynamic_poly_body_button_image.png"
             }
         }
     },
     "button": {
       "colours": {
         "normal_bg": "#dcdcdc",
-        "hovered_bg": "#aaaaaa",
-        "active_bg": "#336dff",
-        "normal_text": "#141414",
-        "hovered_text": "#141414",
-        "selected_text": "#141414",
+        "hovered_bg": "#9696a0",
+        "active_bg": "#0a4bf0",
+        "normal_text": "#282828",
+        "hovered_text": "#323232",
+        "active_text": "#373737",
         "normal_border": "#afafaf"
       },
       "misc": {
@@ -45,9 +53,10 @@
       {
         "normal_bg": "#464646",
         "hovered_bg": "#505050",
-        "active_bg": "#1e06bd",
+        "active_bg": "#323296",
         "normal_text": "#e6e6e6",
-        "hovered_text": "#e6e6e6"
+        "hovered_text": "#e6e6e6",
+        "active_text": "#e6e6e6"
       }
     },
     "window.#close_button":
@@ -65,8 +74,8 @@
     "selection_list":
     {
         "misc": {
-          "list_item_height": "70",
-          "list_item_width": "70"
+          "list_item_height": "80",
+          "list_item_width": "80"
         },
         "colours":
          {
