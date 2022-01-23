@@ -13,9 +13,13 @@ press r for a rectangle body
 
 press p for a polygon body(you can edit vertices in the code but it has to be > 2, <= 16)
 
-press c for a circle body
+press c for a circle body(you can change the redies in the code)
 
 press s for small circles(made them just for fun they are really laggy in big numbers)
+
+press n for makeing a new world(resetting the world)
+
+press k for making a kinematic polygon body((you can edit vertices in the code but it has to be >= 3, <= 16)
 
 and you can hold some bodies with mouse left click on the body
 
